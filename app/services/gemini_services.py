@@ -30,7 +30,6 @@ def generate_travel_plan(source, destination, start_date, end_date, budget, inte
     - Tips for the traveler
     '''
 
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    response = model.generate_content(prompt)
+    response = genai.generate_text(prompt=prompt, model="gemini-1.5-flash")
     
-    return response.text if response else "No travel plan generated."
+    return response.result if response else "No travel plan generated."
