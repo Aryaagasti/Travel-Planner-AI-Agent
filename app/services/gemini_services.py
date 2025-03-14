@@ -1,6 +1,7 @@
 import google.generativeai as genai
 from app.config import Config
 
+# Configure Gemini AI
 genai.configure(api_key=Config.GEMINI_KEY)
 
 def generate_travel_plan(source, destination, start_date, end_date, budget, interests, tourist_spots, hotels, flights, trains):
@@ -13,6 +14,7 @@ def generate_travel_plan(source, destination, start_date, end_date, budget, inte
     flight_names = [flight.get('title', 'Unknown Flight') for flight in flights]
     train_names = [train.get('title', 'Unknown Train') for train in trains]
 
+    # Create the prompt for Gemini AI
     prompt = f'''
     Create a detailed and well-structured travel plan for a trip from {source} to {destination} from {start_date} to {end_date} with a budget of {budget}.
     Interests: {interests}.
@@ -30,6 +32,10 @@ def generate_travel_plan(source, destination, start_date, end_date, budget, inte
     - Tips for the traveler
     '''
 
-    response = genai.generate_text(prompt=prompt, model="gemini-1.5-flash")
+    # Initialize the Gemini model
+    model = genai.GenerativeModel('models/gemini-1.5-flash')  # Use 'gemini-pro' instead of 'gemini-1.5-flash'
+
+    # Generate the travel plan
+    response = model.generate_content(prompt)
     
-    return response.result if response else "No travel plan generated."
+    return response.text if response else "No travel plan generated."
