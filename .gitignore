@@ -1,0 +1,34 @@
+# Python cache and bytecode files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+
+# Environment files
+.env
+
+# Virtual environment folders
+venv/
+env/
+ENV/
+.venv/
+.pyenv/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+
+# PyInstaller
+*.spec
+
+# Jupyter Notebook files
+.ipynb_checkpoints
+
+# Logs
+logs/
+*.log
+
+# MacOS
+.DS_Store
