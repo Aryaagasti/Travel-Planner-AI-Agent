@@ -3,7 +3,10 @@ from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    
+    # Allow CORS for your frontend URL
+    CORS(app, resources={r"/*": {"origins": "https://arya-s-ai-travel-planner.onrender.com"}})
+    
     app.config.from_object('app.config.Config')
 
     from app.routes import main_routes
